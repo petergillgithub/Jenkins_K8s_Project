@@ -32,8 +32,14 @@ maven 'maven3.9.7'
                 sh "mvn clean sonar:sonar package"
             }
         }
+
+        stage('Nexus'){
+            steps{
+                sh "mvn clean deploy"
+            }
+        }
         
-        
+
 
 
 
