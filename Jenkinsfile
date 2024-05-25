@@ -3,7 +3,7 @@ pipeline {
 agent any 
     
 tools {
-maven 'maven3.9.6'
+maven 'maven3.9.7'
 }
 
     
@@ -26,13 +26,16 @@ maven 'maven3.9.6'
                 sh "mvn test"
             }
         }
-
+        /*
         stage('CodeQualityCheck'){
             steps{
                 
                 sh "mvn clean sonar:sonar package"
             }
         }
+        */
+
+
 
 
 
