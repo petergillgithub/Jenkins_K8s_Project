@@ -29,10 +29,8 @@ maven 'maven3.9.6'
 
         stage('CodeQualityCheck'){
             steps{
-                sh "mvn sonar:sonar \
-  -Dsonar.host.url=http://ec2-3-11-80-220.eu-west-2.compute.amazonaws.com:9000 \
-  -Dsonar.login=d157f55828d6ddc14427965b5d7d56b6a76e4cda"
-                sh "mvn clean sonar:sonar"
+                
+                sh "mvn clean install sonar:sonar"
             }
         }
 
