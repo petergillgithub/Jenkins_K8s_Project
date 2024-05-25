@@ -60,7 +60,7 @@ environment {
 
         stage('PushtoECR'){
             steps{
-                sh "docker tag ${AWS_ECR_REPO}:${BUILD_NUMBER}.dkr.ecr.${AWS_REGION}.amazonaws.com/${AWS_ECR_REPO}:${BUILD_NUMBER}"
+                sh "docker tag ${AWS_ECR_REPO}:${{BUILD_NUMBER}} ${${AWS_ACCOUNT_ID}}.dkr.ecr.${AWS_REGION}.amazonaws.com/${AWS_ECR_REPO}:${BUILD_NUMBER}"
                 sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${AWS_ECR_REPO}:${BUILD_NUMBER}"
             }
         }
