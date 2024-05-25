@@ -15,7 +15,14 @@ maven 'maven3.9.6'
             }
         }
 
-    
+        stage('Compile the package'){
+            steps{
+                sh "mvn clean package"
+            }
+        }
+
+
+
 
 
 
