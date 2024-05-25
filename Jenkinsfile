@@ -27,8 +27,7 @@ stages{
     // CheckOutCode
     stage('CheckOutCode'){
         steps{
-            checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/petergillgithub/maven-web-application.git']])        }
-    }
+            checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/petergillgithub/Jenkins_K8s_Project.git']])    }
 
     // Build the package with maven
     stage('BuildPackage'){
@@ -42,17 +41,13 @@ stages{
         steps {
             sh 'mvn test'
         }
-    // SonarQube
-    stage('SonarQubeCode_quality'){
-        steps{
-            sh " docker build -t sonarqube:alpine"
-        }
+    
     }
     
     
     
     
-    } 
+    
 
 } // stages closing
 
