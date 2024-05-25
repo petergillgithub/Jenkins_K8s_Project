@@ -21,6 +21,12 @@ maven 'maven3.9.6'
             }
         }
 
+        stage('Unit Test'){
+            steps{
+                sh "mvn test"
+            }
+        }
+
 
 
 
