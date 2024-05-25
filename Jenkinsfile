@@ -57,6 +57,12 @@ environment {
                 sh "docker build -t ${AWS_ECR_REPO}:${BUILD_NUMBER} ."
             }
         }
+
+        stage('PushtoECR'){
+            steps{
+                sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${AWS_ECR_REPO}:${BUILD_NUMBER}"
+            }
+        }
         
 
 
