@@ -26,14 +26,14 @@ maven 'maven3.9.7'
                 sh "mvn test"
             }
         }
-        /*
+        
         stage('CodeQualityCheck'){
             steps{
                 
                 sh "mvn clean sonar:sonar package"
             }
         }
-        */
+        
 
 
 
