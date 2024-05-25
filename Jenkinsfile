@@ -30,7 +30,7 @@ maven 'maven3.9.6'
         stage('CodeQualityCheck'){
             steps{
                 
-                sh "mvn clean install sonar:sonar"
+                sh "mvn clean sonar:sonar package"
             }
         }
 
