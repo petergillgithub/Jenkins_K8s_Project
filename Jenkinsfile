@@ -49,6 +49,15 @@ environment {
         //     }
         // }
 
+        stage('aws_credentials'){
+            steps{
+                sh "sudo apt install unzip -y 
+                sh "curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                sh "unzip awscliv2.zip"
+                sh "sudo ./aws/install"
+            }
+        }
+
         stage('AWS_ECR_AUTHENTICATE'){
             steps{
                 sh "aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
