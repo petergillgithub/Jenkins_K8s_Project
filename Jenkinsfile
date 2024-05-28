@@ -65,9 +65,15 @@ environment {
             }
         }
 
-        stage('Verify kubectl') {
+            stage('Verify kubectl') {
+        steps {
+            sh 'kubectl version --client'
+        }
+    }
+
+    stage('Verify kubectl') {
     steps {
-        sh 'kubectl version --client'
+        sh 'helm version'
     }
 }
 
