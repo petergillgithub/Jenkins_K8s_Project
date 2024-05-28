@@ -74,7 +74,7 @@ environment {
     stage('Verify helm version') {
     steps {
         withCredentials([file(credentialsId: 'kubeconfig', variable: 'kubeconfig')]) {
-    sh 'kubectl get node'
+    sh 'kubectl get nodes'
     }
             
         }
