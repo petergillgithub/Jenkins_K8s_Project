@@ -71,7 +71,7 @@ environment {
         }
     }
 
-    stage('Verify kubectl') {
+    stage('Verify helm version') {
     steps {
         sh 'helm version'
     }
