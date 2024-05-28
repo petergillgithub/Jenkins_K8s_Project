@@ -79,7 +79,7 @@ environment {
 
         stage('Deploy to EKS cluster'){
             steps{
-                sh "helm upgrade --install javawebapp ./javawebapp \ 
+                sh "helm upgrade --install javawebapp ./javawebapp  
                 --set image.repository=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${AWS_ECR_REPO} 
                 --set image.tag=${BUILD_NUMBER}"
             }
