@@ -73,18 +73,18 @@ environment {
 
     stage('Verify helm version') {
     steps {
-        sh 'helm version'
+        sh 'kubectl get nodes'
     }
 }
 
-        stage('Deploy to EKS cluster'){
-            steps{
-                withCredentials([string(credentialsId: 'kubeconfig', variable: 'kubeconfig_credentials')]) {
-                    sh "helm upgrade --install javawebapp ./javawebapp --set image.repository=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${AWS_ECR_REPO} --set image.tag=${BUILD_NUMBER}"
-                }
+        // stage('Deploy to EKS cluster'){
+        //     steps{
+        //         withCredentials([string(credentialsId: 'kubeconfig', variable: 'kubeconfig_credentials')]) {
+        //             sh "helm upgrade --install javawebapp ./javawebapp --set image.repository=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${AWS_ECR_REPO} --set image.tag=${BUILD_NUMBER}"
+        //         }
                 
-            }
-        }
+        //     }
+        // }
 
 
         
