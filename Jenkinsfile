@@ -73,9 +73,12 @@ environment {
 
     stage('Verify helm version') {
     steps {
-        sh 'kubectl get nodes'
+        withCredentials([file(credentialsId: 'kubeconfig', variable: 'kubeconfig')]) {
+    sh 'kubectl get node'
     }
-}
+            
+        }
+    }
 
         // stage('Deploy to EKS cluster'){
         //     steps{
