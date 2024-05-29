@@ -125,17 +125,21 @@ options {
 
 
 
+    
+
+
+    }
+
     post {
-        success {
-            slackSend (color: '#00FF00', message: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) succeeded.")
-        }
-        failure {
-            slackSend (color: '#FF0000', message: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) failed.")
-        }
-    }
+  success {
+    sendslacknotifications(currentBuild.result)
+  }
+  failure {
+    sendslacknotifications(currentBuild.result)
 
+  }
+}
 
-    }
 }
 
 def sendslacknotifications(String buildStatus = 'STARTED') {
