@@ -151,6 +151,7 @@ options {
 
 }
 
+/*
 def sendslacknotifications(String buildStatus = 'STARTED') {
   // build status of null means successful
   //This is the condition which we are checking weather buildStatus is SUCCESSFULL or not.
@@ -178,6 +179,7 @@ def sendslacknotifications(String buildStatus = 'STARTED') {
   // Calling the slackSend function to Send notifications.
   slackSend (color: colorCode, message: summary,channel: '#jenkins_slack_channel')
 }
+*/
 
 
 		
