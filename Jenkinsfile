@@ -1,9 +1,9 @@
 pipeline {
 
-    echo "The Job Name is : " ${env.JOB_NAME}
-    echo "The Build Number is: " ${env.BUILD_NUMBER}
-    echo "The Node Name is: " ${env.NODE_NAME}
-    echo "The Jenkins Home Directory is: " ${env.JENKINS_HOME}
+    @echo "The Job Name is : " ${env.JOB_NAME}
+    @echo "The Build Number is: " ${env.BUILD_NUMBER}
+    @echo "The Node Name is: " ${env.NODE_NAME}
+    @echo "The Jenkins Home Directory is: " ${env.JENKINS_HOME}
 
 agent any 
     
