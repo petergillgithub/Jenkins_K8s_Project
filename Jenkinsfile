@@ -30,6 +30,8 @@ stage("Environment variables"){
                 echo "The Build Number is:  ${env.BUILD_NUMBER}"
                 echo "The Node Name is:  ${env.NODE_NAME}"
                 echo "The Jenkins Home Directory is:  ${env.JENKINS_HOME}"
+                def combinedMessage = "The Job Name is: ${env.JOB_NAME}\nThe Build Number is: ${env.BUILD_NUMBER}\nThe Node name is: ${env.NODE_NAME}/nThe Jenkins Home Directory is: ${env.JENKINS_HOME}"
+
             }
         }
 
