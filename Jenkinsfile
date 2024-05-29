@@ -1,4 +1,4 @@
-@Library('my-shared-library') _
+@Library('slack_library') _
 
 pipeline {
 
@@ -9,15 +9,10 @@ tools {
 maven 'maven3.9.7'
 }
 
-
-
-
 environment {
     AWS_ACCOUNT_ID = "339712876743"
     AWS_ECR_REPO = "ecrrepo"
     AWS_REGION = "eu-west-2"
-
-
 
 }
 
@@ -31,13 +26,10 @@ options {
   timestamps()
 }
 
-
     
-    stages{
-
+stages{
 
         stage('CheckOut'){
-           
             steps{
                 sendslacknotifications('STARTED')
                 checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/petergillgithub/Jenkins_K8s_Project.git']])
@@ -109,8 +101,6 @@ options {
 
         */
     
-        
-
 
         stage("Environment variables"){
             steps{
