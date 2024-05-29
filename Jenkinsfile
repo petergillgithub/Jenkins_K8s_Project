@@ -8,6 +8,9 @@ tools {
 maven 'maven3.9.7'
 }
 
+
+
+
 environment {
     AWS_ACCOUNT_ID = "339712876743"
     AWS_ECR_REPO = "ecrrepo"
@@ -17,8 +20,14 @@ environment {
 
 }
 
+triggers {
+  pollSCM '* * * * *'
+}
+
+
 options {
-  buildDiscarder logRotator(artifactDaysToKeepStr: '2', artifactNumToKeepStr: '2', daysToKeepStr: '3', numToKeepStr: '5')
+  buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '3', daysToKeepStr: '', numToKeepStr: '1')
+  timestamps()
 }
 
 
