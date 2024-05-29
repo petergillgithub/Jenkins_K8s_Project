@@ -48,7 +48,7 @@ stages{
             }
         }
         
-        /*
+        
         stage('CodeQualityCheck'){
             steps{
                 sh "mvn clean sonar:sonar package"
@@ -60,9 +60,6 @@ stages{
                 sh "mvn clean deploy"
             }
         }
-        */
-
-        
 
         stage('AWS_ECR_AUTHENTICATE'){
             steps{
@@ -84,7 +81,7 @@ stages{
                 sh 'kubectl version --client'
         }
     }
-    /*
+
         stage('K8s Node'){
             steps{
                 sh "kubectl get nodes"
@@ -99,8 +96,7 @@ stages{
             }
         }
 
-        */
-    
+        
 
         stage("Environment variables"){
             steps{
@@ -119,13 +115,6 @@ stages{
 
             }
         }
-
-
-
-
-
-
-    
 
 
     }
