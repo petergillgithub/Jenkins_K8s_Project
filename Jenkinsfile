@@ -65,26 +65,26 @@ environment {
             }
         }
 
-            stage('Verify kubectl') {
-        steps {
-            sh 'kubectl version --client'
-        }
-    }
+    //         stage('Verify kubectl') {
+    //     steps {
+    //         sh 'kubectl version --client'
+    //     }
+    // }
 
-    stage('K8s Node'){
-        steps{
-            sh "kubectl get nodes"
-        }
-    }
+    // stage('K8s Node'){
+    //     steps{
+    //         sh "kubectl get nodes"
+    //     }
+    // }
 
-        stage('Deploy to EKS cluster'){
-            steps{
+    //     stage('Deploy to EKS cluster'){
+    //         steps{
             
-        sh "helm upgrade --install first helmchart --namespace test-ns --set image.tag=$BUILD_NUMBER"
+    //     sh "helm upgrade --install first helmchart --namespace test-ns --set image.tag=$BUILD_NUMBER"
                 
                 
-            }
-        }
+    //         }
+    //     }
 
 
         
