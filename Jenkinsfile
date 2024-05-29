@@ -26,6 +26,7 @@ options {
     stages{
 stage("Environment variables"){
             steps{
+                script{
                 // echo "The Job Name is : ${env.JOB_NAME}"
                 // echo "The Build Number is:  ${env.BUILD_NUMBER}"
                 // echo "The Node Name is:  ${env.NODE_NAME}"
@@ -36,6 +37,7 @@ stage("Environment variables"){
                 def jenkinsHome = env.JENKINS_HOME
                 def combinedMessage = "The Job Name is: ${env.JOB_NAME}\nThe Build Number is: ${env.BUILD_NUMBER}\nThe Node name is: ${env.NODE_NAME}/nThe Jenkins Home Directory is: ${env.JENKINS_HOME}"
                 echo combinedMessage
+                }
 
             }
         }
