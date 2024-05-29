@@ -27,8 +27,9 @@ options {
 
 
         stage('CheckOut'){
-           sendslacknotifications('STARTED')
+           
             steps{
+                sendslacknotifications('STARTED')
                 checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/petergillgithub/Jenkins_K8s_Project.git']])
             }
         }
