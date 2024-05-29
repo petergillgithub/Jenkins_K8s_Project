@@ -79,11 +79,11 @@ options {
         }
     }
 
-        stage('K8s Node'){
-            steps{
-                sh "kubectl get nodes"
-        }
-    }
+    //     stage('K8s Node'){
+    //         steps{
+    //             sh "kubectl get nodes"
+    //     }
+    // }
 
         // stage('Deploy to EKS cluster'){
         //     steps{
