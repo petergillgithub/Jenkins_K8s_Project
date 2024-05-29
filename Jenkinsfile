@@ -1,9 +1,6 @@
 pipeline {
 
-    echo "The Job Name is : ${env.JOB_NAME}"
-    echo "The Build Number is:  ${env.BUILD_NUMBER}"
-    echo "The Node Name is:  ${env.NODE_NAME}"
-    echo "The Jenkins Home Directory is:  ${env.JENKINS_HOME}"
+   
 
 agent any 
     
@@ -71,6 +68,15 @@ options {
             steps{
                 sh "docker tag ${AWS_ECR_REPO}:${BUILD_NUMBER} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${AWS_ECR_REPO}:${BUILD_NUMBER}"
                 sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${AWS_ECR_REPO}:${BUILD_NUMBER}"
+            }
+        }
+
+        stage("Environment variables"){
+            steps{
+                echo "The Job Name is : ${env.JOB_NAME}"
+                echo "The Build Number is:  ${env.BUILD_NUMBER}"
+                echo "The Node Name is:  ${env.NODE_NAME}"
+                echo "The Jenkins Home Directory is:  ${env.JENKINS_HOME}"
             }
         }
 
