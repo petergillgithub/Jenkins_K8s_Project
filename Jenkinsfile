@@ -1,4 +1,4 @@
-@Library('slacknotification-sharedlibs') _
+@Library('my-shared-library') _
 
 pipeline {
 
