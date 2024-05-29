@@ -15,6 +15,10 @@ environment {
 
 }
 
+options {
+  buildDiscarder logRotator(artifactDaysToKeepStr: '2', artifactNumToKeepStr: '2', daysToKeepStr: '3', numToKeepStr: '5')
+}
+
 
     
     stages{
