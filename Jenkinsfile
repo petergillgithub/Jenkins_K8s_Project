@@ -1,3 +1,4 @@
+// Shared Library for Slack
 @Library('slack_library') _
 
 pipeline {
@@ -28,66 +29,65 @@ options {
 
     
 stages{
-
+// CheckOut the Code from Git 
         stage('CheckOut'){
             steps{
                 sendSlackNotifications('STARTED')
                 checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/petergillgithub/Jenkins_K8s_Project.git']])
             }
         }
-
+// Build the package
         stage('Compile the package'){
             steps{
                 sh "mvn clean package"
             }
         }
-
+// Unit Testing
         stage('Unit Test'){
             steps{
                 sh "mvn test"
             }
         }
         
-        
+// Code Quality Check from Sonar Qube
         stage('CodeQualityCheck'){
             steps{
                 sh "mvn clean sonar:sonar package"
             }
         }
-
+// Push the Dependencies to Nexus Repo
         stage('Nexus'){
             steps{
                 sh "mvn clean deploy"
             }
         }
-
+// AWS ECR Authentication & Build the package in container with Docker
         stage('AWS_ECR_AUTHENTICATE'){
             steps{
                 sh "aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
                 sh "docker build -t ${AWS_ECR_REPO}:${BUILD_NUMBER} ."
             }
         }
-
+// Push the Image to Aws ECR & tag the image
         stage('PushtoECR'){
             steps{
                 sh "docker tag ${AWS_ECR_REPO}:${BUILD_NUMBER} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${AWS_ECR_REPO}:${BUILD_NUMBER}"
                 sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${AWS_ECR_REPO}:${BUILD_NUMBER}"
             }
         }
-
-        
+// Verfiy Kubernetes version
         stage('Verify kubectl') {
             steps {
                 sh 'kubectl version --client'
         }
     }
-
+// Check Nodes of Kubernetes Cluster
         stage('K8s Node'){
             steps{
                 sh "kubectl get nodes"
         }
     }
-
+// Deploy the application to EKS cluster
         stage('Deploy to EKS cluster'){
             steps{
                 sh "helm upgrade --install first helmchart --namespace test-ns --set image.tag=$BUILD_NUMBER"
@@ -97,7 +97,7 @@ stages{
         }
 
         
-
+// Verify Job Name & Build Number, Node Name, Jenkins Home Dir with env var
         stage("Environment variables"){
             steps{
                 script{
@@ -118,7 +118,7 @@ stages{
 
 
     }
-
+// Slack Notification part to notify slack of either success or failure.
     post {
   success {
     sendSlackNotifications(currentBuild.result)
